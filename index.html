@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elishama Paluku - Software Developer | AI & Cybersecurity</title>
+    <meta name="description" content="Elishama Paluku - Software Developer specializing in AI, Cybersecurity, and Full-Stack Development">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Interactive Click Me Button -->
+    <div class="click-me-container" id="click-me-container">
+        <button class="click-me-btn" id="click-me-btn">
+            <span class="btn-text">Click Me!</span>
+            <span class="btn-emoji">🎯</span>
+        </button>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">EP</a>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+                <li class="nav-item"><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-controls">
+                <div class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <div class="theme-toggle-track">
+                        <div class="theme-toggle-thumb">
+                            <i class="fas fa-sun sun-icon"></i>
+                            <i class="fas fa-moon moon-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-profile">
+                    <div class="profile-image">
+                        <div class="profile-img-placeholder">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkMSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6IzYzNjZmMTtzdG9wLW9wYWNpdHk6MSIgLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNlYzQ4OTk7c3RvcC1vcGFjaXR5OjEiIC8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSIxMDAiIGZpbGw9InVybCgjZ3JhZDEpIi8+PHRleHQgeD0iMTAwIiB5PSIxMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIj5FUDwvdGV4dD48L3N2Zz4=" 
+                                 alt="Elishama Paluku" 
+                                 class="profile-img"
+                                 style="display: block !important; visibility: visible !important;">
+                        </div>
+                        <div class="profile-border"></div>
+                        
+                        <!-- Skill Orbit Icons -->
+                        <div class="skill-orbit">
+                            <div class="orbit-icon orbit-icon-1" data-skill="react" data-section="skills">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="orbit-icon orbit-icon-2" data-skill="python" data-section="skills">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div class="orbit-icon orbit-icon-3" data-skill="security" data-section="skills">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="orbit-icon orbit-icon-4" data-skill="database" data-section="skills">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="orbit-icon orbit-icon-5" data-skill="ai" data-section="skills">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="orbit-icon orbit-icon-6" data-skill="linux" data-section="skills">
+                                <i class="fab fa-linux"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-3d-container">
+                        <span class="title-3d" data-text="Elishama">Elishama</span>
+                        <span class="title-3d" data-text="Paluku">Paluku</span>
+                    </span>
+                </h1>
+                <p class="hero-subtitle">Software Developer | AI & Cybersecurity</p>
+                <p class="hero-description">
+                    I am Elishama Paluku, an Information Technology professional with experience in full-stack development, AI-powered medical imaging applications, and secure system design. I specialize in building scalable web applications and implementing machine learning pipelines for real-world solutions. Passionate about bridging software engineering, cybersecurity, and AI to solve complex technical challenges.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Download Résumé</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I am Elishama Paluku, a Computer Science student at the University of Nairobi, with hands-on experience in software development, AI, and cybersecurity. I have built full-stack applications using React and FastAPI, managed PostgreSQL databases, and designed secure systems on Linux platforms. I am skilled in machine learning, medical imaging classification, and deploying robust, scalable solutions. My goal is to leverage technology to create impactful software while maintaining strong security and performance standards.
+                    </p>
+                    <div class="education-highlight">
+                        <h3>Education</h3>
+                        <p><strong>Bachelor of Science in Computer Science</strong><br>
+                        University of Nairobi | Expected Graduation: 2027</p>
+                    </div>
+                    <blockquote class="motto">
+                        "Building intelligent and secure systems, one line of code at a time."
+                    </blockquote>
+                    <p>Email: <a href="mailto:skyssando@gmail.com">skyssando@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-content">
+                <p class="skills-summary">
+                    Software development and programming, web and application development, database design and management, machine learning and AI applications, cybersecurity and secure systems design, networking and systems administration, DevOps and environment management, problem-solving and technical documentation.
+                </p>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <i class="fas fa-code"></i>
+                        <h3>Web Development</h3>
+                        <p>React, FastAPI, Node.js, HTML5, CSS3, JavaScript</p>
+                    </div>
+                    <div class="skill-category">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI & Machine Learning</h3>
+                        <p>TensorFlow.js, Python, ML Pipelines, Medical Imaging</p>
+                    </div>
+                    <div class="skill-category">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Cybersecurity</h3>
+                        <p>System Security, Authentication, Linux Security</p>
+                    </div>
+                    <div class="skill-category">
+                        <i class="fas fa-database"></i>
+                        <h3>Databases</h3>
+                        <p>PostgreSQL, Database Design, SQL</p>
+                    </div>
+                    <div class="skill-category">
+                        <i class="fas fa-server"></i>
+                        <h3>DevOps & Systems</h3>
+                        <p>Linux, Git, System Administration, Networking</p>
+                    </div>
+                    <div class="skill-category">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Tools & Technologies</h3>
+                        <p>Git, VS Code, Docker, APIs, RESTful Design</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Osteoarthritis AI Web App</h3>
+                        <p class="project-year">2025</p>
+                        <p class="project-description">
+                            Built a medical imaging platform to classify osteoarthritis severity using TensorFlow.js and FastAPI. Implemented secure user authentication, patient management, and dashboard analytics.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">TensorFlow.js</span>
+                            <span class="tech-tag">Linux</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/shammahpaluku/osteoarthritis-ai-web-app" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="#" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Study Mate</h3>
+                        <p class="project-year">2025</p>
+                        <p class="project-description">
+                            A comprehensive study management platform to help students organize their learning materials, track progress, and collaborate with peers. Implemented features for note-taking, task management, and study scheduling.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/shammahpaluku/study-mate" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="#" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Business Debt Manager</h3>
+                        <p class="project-year">2025</p>
+                        <p class="project-description">
+                            Developed a comprehensive debt management system for businesses to track, manage, and analyze financial obligations. Features include debt tracking, payment scheduling, and financial reporting dashboards.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Express.js</span>
+                            <span class="tech-tag">Chart.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/shammahpaluku/bussiness-debt-manager" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="#" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">3D Car Customization</h3>
+                        <p class="project-year">2025</p>
+                        <p class="project-description">
+                            Created an interactive 3D car configurator with real-time customization and visualization. Users can modify colors, wheels, and accessories while seeing instant 3D updates.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Three.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">WebGL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/shammahpaluku/3D-car-customization-" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="#" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Education & Relevant Coursework</h2>
+            <div class="education-content">
+                <div class="education-main">
+                    <h3>Bachelor of Science in Computer Science</h3>
+                    <p class="education-school">University of Nairobi | Expected Graduation: 2026</p>
+                </div>
+                <div class="coursework-grid">
+                    <div class="course-item">
+                        <h4>Machine Learning</h4>
+                        <p class="course-year">2024</p>
+                    </div>
+                    <div class="course-item">
+                        <h4>Artificial Intelligence</h4>
+                        <p class="course-year">2024</p>
+                    </div>
+                    <div class="course-item">
+                        <h4>Data Structures & Algorithms</h4>
+                        <p class="course-year">2023</p>
+                    </div>
+                    <div class="course-item">
+                        <h4>Object-Oriented Programming</h4>
+                        <p class="course-year">2023</p>
+                    </div>
+                    <div class="course-item">
+                        <h4>Database Systems</h4>
+                        <p class="course-year">2023</p>
+                    </div>
+                    <div class="course-item">
+                        <h4>Operating Systems</h4>
+                        <p class="course-year">2024</p>
+                    </div>
+                    <div class="course-item">
+                        <h4>Computer Networks</h4>
+                        <p class="course-year">2025</p>
+                    </div>
+                    <div class="course-item">
+                        <h4>Network Design & Administration</h4>
+                        <p class="course-year">2025</p>
+                    </div>
+                    <div class="course-item">
+                        <h4>Automata Theory & Formal Languages</h4>
+                        <p class="course-year">2025</p>
+                    </div>
+                    <div class="course-item">
+                        <h4>Software Engineering</h4>
+                        <p class="course-year">2024</p>
+                    </div>
+                    <div class="course-item">
+                        <h4>Web Application Development</h4>
+                        <p class="course-year">2024</p>
+                    </div>
+                    <div class="course-item">
+                        <h4>Information Systems Security</h4>
+                        <p class="course-year">2025</p>
+                    </div>
+                    <div class="course-item">
+                        <h4>Project Work Unit (Osteoarthritis AI Web App)</h4>
+                        <p class="course-year">2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="section">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certifications-grid">
+                <div class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certification-content">
+                        <h3>TensorFlow Developer Certificate</h3>
+                        <p class="certification-year">2025</p>
+                        <p class="certification-issuer">Google</p>
+                    </div>
+                </div>
+                <div class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="certification-content">
+                        <h3>CompTIA Security+</h3>
+                        <p class="certification-year">2025</p>
+                        <p class="certification-issuer">CompTIA</p>
+                    </div>
+                </div>
+                <div class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="certification-content">
+                        <h3>Cisco CCNA</h3>
+                        <p class="certification-year">2025</p>
+                        <p class="certification-issuer">Cisco</p>
+                    </div>
+                </div>
+                <div class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fab fa-linux"></i>
+                    </div>
+                    <div class="certification-content">
+                        <h3>Linux Foundation Certified System Administrator (LFCS)</h3>
+                        <p class="certification-year">2025</p>
+                        <p class="certification-issuer">Linux Foundation</p>
+                    </div>
+                </div>
+                <div class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="certification-content">
+                        <h3>Microsoft Azure Fundamentals (AZ-900)</h3>
+                        <p class="certification-year">2025</p>
+                        <p class="certification-issuer">Microsoft</p>
+                    </div>
+                </div>
+                <div class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="certification-content">
+                        <h3>SQL for Data Science</h3>
+                        <p class="certification-year">2024</p>
+                        <p class="certification-issuer">Coursera</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <a href="mailto:skyssando@gmail.com">skyssando@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <h3>LinkedIn</h3>
+                            <a href="https://www.linkedin.com/in/shammahpaluku/" target="_blank">linkedin.com/in/shammahpaluku</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <div>
+                            <h3>GitHub</h3>
+                            <a href="https://github.com/shammahpaluku" target="_blank">github.com/shammahpaluku</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Elishama Paluku. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="https://github.com/shammahpaluku" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/shammahpaluku/" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
