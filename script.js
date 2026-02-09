@@ -1017,6 +1017,25 @@ learning pipelines for real-world solutions.`;
     yPosition += 5;
     pdf.text('Technologies: React, JavaScript, CSS3, AI/ML Libraries', 20, yPosition);
     
+    yPosition += 10;
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(11);
+    pdf.setTextColor(60, 60, 60);
+    pdf.text('Ekelea App - E-commerce Platform', 20, yPosition);
+    
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(10);
+    const ekeleaDesc = 'Comprehensive e-commerce platform with product catalog, secure payments, and real-time inventory management.';
+    const ekeleaLines = pdf.splitTextToSize(ekeleaDesc, 170);
+    yPosition += 5;
+    ekeleaLines.forEach(line => {
+        pdf.text(line, 20, yPosition);
+        yPosition += 5;
+    });
+    
+    yPosition += 5;
+    pdf.text('Technologies: React, Node.js, MongoDB, Express.js, Stripe API', 20, yPosition);
+    
     // Footer
     pdf.setFont('helvetica', 'italic');
     pdf.setFontSize(9);
