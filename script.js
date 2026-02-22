@@ -10,55 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
     const navbar = document.getElementById('navbar');
-    const themeToggle = document.getElementById('theme-toggle');
-
-    // Theme Toggle Functionality
-    const initTheme = () => {
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-        
-        document.documentElement.setAttribute('data-theme', theme);
-        updateThemeToggle(theme);
-    };
-
-    const updateThemeToggle = (theme) => {
-        const thumb = themeToggle.querySelector('.theme-toggle-thumb');
-        if (theme === 'dark') {
-            thumb.style.transform = 'translateX(28px)';
-        } else {
-            thumb.style.transform = 'translateX(0)';
-        }
-    };
-
-    const toggleTheme = () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeToggle(newTheme);
-        
-        // Add transition effect
-        document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-        
-        // Show notification
-        showNotification(`${newTheme === 'dark' ? '🌙 Enhanced Dark' : '☀️ Enhanced Light'} mode activated`, 'success');
-    };
-
-    themeToggle.addEventListener('click', toggleTheme);
-
-    // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem('theme')) {
-            const newTheme = e.matches ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            updateThemeToggle(newTheme);
-        }
-    });
-
-    // Initialize theme on load
-    initTheme();
 
     // Mobile navigation toggle
     navToggle.addEventListener('click', function() {
