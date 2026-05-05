@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLAP Query Visualization Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E86AB;
+            --secondary-color: #A23B72;
+            --accent-color: #F18F01;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --dark-color: #343a40;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        
+        .dashboard-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin: 0 auto;
+            max-width: 1400px;
+        }
+        
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .metric-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .metric-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .chart-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        
+        .nav-tabs .nav-link {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .nav-tabs .nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .query-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .query-code {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        
+        .visualization-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .viz-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .viz-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .viz-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .viz-card-body {
+            padding: 15px;
+        }
+        
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .alert-custom {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-container">
+            <!-- Header Section -->
+            <div class="header-section">
+                <h1><i class="fas fa-chart-line"></i> OLAP Query Visualization Dashboard</h1>
+                <p class="lead">Business Intelligence & Analytics Platform</p>
+                <div class="row mt-4">
+                    <div class="col-md-3">
+                        <div class="metric-card">
+                            <div class="metric-value">5,000+</div>
+                            <div class="metric-label">Total Records</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric-card">
+                            <div class="metric-value">16</div>
+                            <div class="metric-label">Dimensions</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric-card">
+                            <div class="metric-value">2</div>
+                            <div class="metric-label">Fact Tables</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric-card">
+                            <div class="metric-value">100%</div>
+                            <div class="metric-label">Data Integrity</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab">
+                        <i class="fas fa-tachometer-alt"></i> Overview
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="queries-tab" data-bs-toggle="tab" data-bs-target="#queries" type="button" role="tab">
+                        <i class="fas fa-database"></i> OLAP Queries
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="visualizations-tab" data-bs-toggle="tab" data-bs-target="#visualizations" type="button" role="tab">
+                        <i class="fas fa-chart-pie"></i> Visualizations
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="erdiagram-tab" data-bs-toggle="tab" data-bs-target="#erdiagram" type="button" role="tab">
+                        <i class="fas fa-project-diagram"></i> ER Diagram
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content" id="dashboardTabsContent">
+                <!-- Overview Tab -->
+                <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                    <div class="alert alert-success alert-custom">
+                        <h5><i class="fas fa-check-circle"></i> Database Status: Connected</h5>
+                        <p class="mb-0">PostgreSQL snowflakedb database is operational with 15 foreign key relationships established.</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="chart-container">
+                                <h5 class="chart-title"><i class="fas fa-chart-bar"></i> Sales Performance Overview</h5>
+                                <canvas id="salesChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="chart-container">
+                                <h5 class="chart-title"><i class="fas fa-chart-pie"></i> Product Distribution</h5>
+                                <canvas id="productChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h5 class="chart-title"><i class="fas fa-calendar-alt"></i> Time Series Analysis</h5>
+                        <canvas id="timeSeriesChart" width="400" height="150"></canvas>
+                    </div>
+                </div>
+
+                <!-- OLAP Queries Tab -->
+                <div class="tab-pane fade" id="queries" role="tabpanel">
+                    <div class="query-section">
+                        <h5><i class="fas fa-cube"></i> DICE Operations</h5>
+                        <p>Slicing, Dicing, Drilling, and Rolling operations on multidimensional data</p>
+                        <div class="query-code">
+-- DICE: Sales from specific region AND product category AND time period
+SELECT dr.region, dpt.product_type_name, SUM(fs.price * fs.quantity) AS total_sales
+FROM fact_sales fs
+JOIN dim_product dp ON fs.product_id = dp.product_id
+JOIN dim_product_type dpt ON dp.product_type_id = dpt.product_type_id
+JOIN dim_store ds ON fs.store_id = ds.store_id
+JOIN dim_city dc ON ds.city_id = dc.city_id
+JOIN dim_region dr ON dc.region_id = dr.region_id
+JOIN dim_time dt ON fs.time_id = dt.time_id
+WHERE dr.region = 'Great Lakes'
+    AND dpt.product_type_name IN ('Electronics', 'Clothing')
+    AND dt.action_date BETWEEN '2024-01-01' AND '2024-03-31'
+GROUP BY dr.region, dpt.product_type_name;
+                        </div>
+                    </div>
+
+                    <div class="query-section">
+                        <h5><i class="fas fa-filter"></i> SLICE Operations</h5>
+                        <p>Reducing dimensionality by fixing one dimension</p>
+                        <div class="query-code">
+-- SLICE: Sales for a specific time period
+SELECT dt.action_date, SUM(fs.price * fs.quantity) AS daily_sales
+FROM fact_sales fs
+JOIN dim_time dt ON fs.time_id = dt.time_id
+WHERE dt.action_date BETWEEN '2024-01-01' AND '2024-12-31'
+GROUP BY dt.action_date
+ORDER BY dt.action_date;
+                        </div>
+                    </div>
+
+                    <div class="query-section">
+                        <h5><i class="fas fa-layer-group"></i> ROLLUP Operations</h5>
+                        <p>Aggregating data along hierarchical dimensions</p>
+                        <div class="query-code">
+-- ROLLUP: Hierarchical aggregation by region
+SELECT 
+    COALESCE(dr.region_name, 'All Regions') as region,
+    COALESCE(dc.city_name, 'All Cities') as city,
+    SUM(fs.price * fs.quantity) as total_sales
+FROM fact_sales fs
+JOIN dim_store ds ON fs.store_id = ds.store_id
+JOIN dim_city dc ON ds.city_id = dc.city_id
+JOIN dim_region dr ON dc.region_id = dr.region_id
+GROUP BY ROLLUP(dr.region_name, dc.city_name);
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visualizations Tab -->
+                <div class="tab-pane fade" id="visualizations" role="tabpanel">
+                    <div class="visualization-grid">
+                        <div class="viz-card">
+                            <img src="https://via.placeholder.com/400x200/2E86AB/FFFFFF?text=Executive+Dashboard" alt="Executive Dashboard">
+                            <div class="viz-card-body">
+                                <h6>Executive Dashboard</h6>
+                                <p class="text-muted">Real-time KPI monitoring and business metrics</p>
+                                <button class="btn btn-primary btn-sm">View Details</button>
+                            </div>
+                        </div>
+                        <div class="viz-card">
+                            <img src="https://via.placeholder.com/400x200/A23B72/FFFFFF?text=Performance+Heat+Maps" alt="Heat Maps">
+                            <div class="viz-card-body">
+                                <h6>Performance Heat Maps</h6>
+                                <p class="text-muted">Multi-dimensional performance analysis</p>
+                                <button class="btn btn-primary btn-sm">View Details</button>
+                            </div>
+                        </div>
+                        <div class="viz-card">
+                            <img src="https://via.placeholder.com/400x200/F18F01/FFFFFF?text=Sales+Fever+Charts" alt="Fever Charts">
+                            <div class="viz-card-body">
+                                <h6>Sales Fever Charts</h6>
+                                <p class="text-muted">Dynamic performance trend visualization</p>
+                                <button class="btn btn-primary btn-sm">View Details</button>
+                            </div>
+                        </div>
+                        <div class="viz-card">
+                            <img src="https://via.placeholder.com/400x200/C73E1D/FFFFFF?text=Target+Gauges" alt="Dial Gauges">
+                            <div class="viz-card-body">
+                                <h6>Target Achievement Gauges</h6>
+                                <p class="text-muted">Goal tracking and performance metrics</p>
+                                <button class="btn btn-primary btn-sm">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h5 class="chart-title"><i class="fas fa-chart-line"></i> Interactive Visualization</h5>
+                        <canvas id="interactiveChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- ER Diagram Tab -->
+                <div class="tab-pane fade" id="erdiagram" role="tabpanel">
+                    <div class="alert alert-info alert-custom">
+                        <h5><i class="fas fa-info-circle"></i> Database Schema</h5>
+                        <p class="mb-0">Complete ER diagram with 15 established foreign key relationships</p>
+                    </div>
+
+                    <div class="chart-container">
+                        <h5 class="chart-title"><i class="fas fa-project-diagram"></i> Entity Relationship Diagram</h5>
+                        <div class="text-center">
+                            <img src="https://via.placeholder.com/800x600/343a40/FFFFFF?text=ER+Diagram+Visualization" 
+                                 alt="ER Diagram" class="img-fluid rounded">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="chart-container">
+                                <h5 class="chart-title"><i class="fas fa-table"></i> Fact Tables</h5>
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        fact_sales
+                                        <span class="badge bg-primary rounded-pill">5,000+ records</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        fact_supply_order
+                                        <span class="badge bg-primary rounded-pill">Supply data</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="chart-container">
+                                <h5 class="chart-title"><i class="fas fa-cubes"></i> Dimension Tables</h5>
+                                <ul class="list-group">
+                                    <li class="list-group-item">dim_product</li>
+                                    <li class="list-group-item">dim_store</li>
+                                    <li class="list-group-item">dim_employee</li>
+                                    <li class="list-group-item">dim_time</li>
+                                    <li class="list-group-item">+ 12 more dimensions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>&copy; 2024 OLAP Query Visualization Dashboard | Business Intelligence Project</p>
+                <p>
+                    <a href="#" class="text-white me-3"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#" class="text-white me-3"><i class="fas fa-database"></i> Database</a>
+                    <a href="#" class="text-white"><i class="fas fa-chart-bar"></i> Analytics</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Sample data for demonstration
+        const salesData = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Sales Revenue',
+                data: [12000, 19000, 15000, 25000, 22000, 30000],
+                backgroundColor: 'rgba(46, 134, 171, 0.2)',
+                borderColor: 'rgba(46, 134, 171, 1)',
+                borderWidth: 2
+            }]
+        };
+
+        const productData = {
+            labels: ['Electronics', 'Clothing', 'Food', 'Books', 'Sports'],
+            datasets: [{
+                data: [30, 25, 20, 15, 10],
+                backgroundColor: [
+                    '#2E86AB',
+                    '#A23B72',
+                    '#F18F01',
+                    '#C73E1D',
+                    '#28a745'
+                ]
+            }]
+        };
+
+        // Initialize charts
+        const salesCtx = document.getElementById('salesChart').getContext('2d');
+        new Chart(salesCtx, {
+            type: 'bar',
+            data: salesData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const productCtx = document.getElementById('productChart').getContext('2d');
+        new Chart(productCtx, {
+            type: 'doughnut',
+            data: productData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        const timeSeriesCtx = document.getElementById('timeSeriesChart').getContext('2d');
+        new Chart(timeSeriesCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Sales Trend',
+                    data: [45000, 52000, 48000, 61000],
+                    borderColor: 'rgba(162, 59, 114, 1)',
+                    backgroundColor: 'rgba(162, 59, 114, 0.1)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+
+        // Interactive chart
+        const interactiveCtx = document.getElementById('interactiveChart').getContext('2d');
+        new Chart(interactiveCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Revenue', 'Sales', 'Customers', 'Products', 'Stores'],
+                datasets: [{
+                    label: 'Current Quarter',
+                    data: [85, 90, 78, 82, 88],
+                    borderColor: 'rgba(46, 134, 171, 1)',
+                    backgroundColor: 'rgba(46, 134, 171, 0.2)'
+                }, {
+                    label: 'Previous Quarter',
+                    data: [75, 85, 70, 78, 82],
+                    borderColor: 'rgba(162, 59, 114, 1)',
+                    backgroundColor: 'rgba(162, 59, 114, 0.2)'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        // Add interactive functionality
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Add your interactive functionality here
+                console.log('Button clicked:', this.textContent);
+            });
+        });
+
+        // Simulate real-time updates
+        setInterval(() => {
+            const metricValues = document.querySelectorAll('.metric-value');
+            metricValues.forEach(metric => {
+                if (metric.textContent.includes('+')) {
+                    const currentValue = parseInt(metric.textContent);
+                    const newValue = currentValue + Math.floor(Math.random() * 10);
+                    metric.textContent = newValue.toLocaleString() + '+';
+                }
+            });
+        }, 5000);
+    </script>
+</body>
+</html>
